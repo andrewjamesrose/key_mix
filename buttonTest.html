@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Button Test</title>
+  <!--
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  -->
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+
+
+  $( function() {
+    $( "input" ).click(function() {
+ 
+        number = generate_number();
+        document.getElementById("output_number").innerHTML = number;
+        document.getElementById("major_minor").innerHTML = mix_items(number);        
+
+    } );
+  });
+
+
+  function generate_number(){
+        number = Math.floor(Math.random() * 24) + 1; 
+        return number;
+  }
+
+
+  function mix_items(input_number){
+        
+        var output =[];
+        var keys = ["Bmaj", "F#maj", "Dbmaj", "Abmaj", "Ebmaj", "Bbmaj", 
+                    "Fmaj", "Cmaj", "Gmaj", "Dmaj", "Amaj", "Emaj", 
+                    "Abmin", "Ebmin", "Bbmin", "Fmin", "Cmin", "Gmin", 
+                    "Dmin", "Amin", "Emin", "Bmin", "F#min", "Dbmin"];
+
+        up = input_number+1;
+        down = input_number-1;
+
+        if (input_number >= 1 && input_number<=12){
+            //output = "in a major key";
+            rad = input_number + 12;
+        }
+
+        if (input_number >= 13 && input_number<=24){
+            //output = "in a minor key";
+            rad = input_number - 12;
+        }
+
+        if(up == 25){
+            up = 1;
+        }
+
+        if(down == 0){
+            down = 24   
+        }
+        
+        output[0] = keys[input_number-1];
+        output[1] = keys[up-1];
+        output[2] = keys[down-1];
+        output[3] = keys[rad-1];
+
+        return output;
+  }
+
+
+  </script>
+</head>
+<body>
+<div>
+
+ 
+  <input type="button" value="Click here">
+ 
+</div>
+<br/>
+<br/>
+<div id="output_number">click the button to generate integer in (1, 24)</div>
+
+<br/>
+<br/>
+
+<div id="major_minor">key to be determined</div>
+
+
+ 
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Sortable - Connect lists</title>
+  
+  <!--
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+    
+RGB(0, 154,144)     #009A90
+RGB(61, 181,75)     #3DB54B
+RGB(184, 212,50)    #B8D432
+RGB(254, 242,0)     #FEF200
+RGB(255, 204,0)     #FFCC00
+RGB(255, 153,0)     #FF9900
+RGB(239, 93,34)     #EF5D22
+RGB(248, 1,32)      #F80120
+RGB(194, 0,114)     #C20072
+RGB(104, 57,127)    #68397F
+RGB(46, 44,117)     #2E2C75
+RGB(52, 1,204)      #3401CC
+
+
+
+  -->
+
+  <!--
+    ### Colour codes for keymixing display ###
+
+  -->
+  
+  <style>
+  #sortable1, #sortable2 {
+    border: 1px solid #eee;
+    width: 142px;
+    min-height: 20px;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 0 0 0;
+    float: left;
+    margin-right: 10px;
+  }
+  #sortable1 li, #sortable2 li {
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+    font-size: 1.2em;
+    width: 120px;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#sortable1, #sortable2" ).sortable({
+      connectWith: ".connectedSortable"
+    }).disableSelection();
+  } );
+  </script>
+</head>
+<body>
+ 
+<ul id="sortable1" class="connectedSortable">
+  <li class="ui-state-default" style="background-color: RGB(0, 154,144)">A 1</li>
+  <li class="ui-state-default">A 2</li>
+  <li class="ui-state-default">A 3</li>
+  <li class="ui-state-default">A 4</li>
+  <li class="ui-state-default">A 5</li>
+  <li class="ui-state-default">A 6</li>
+</ul>
+ 
+<ul id="sortable2" class="connectedSortable">
+  <li class="ui-state-highlight">B 1</li>
+  <li class="ui-state-highlight">B 2</li>
+  <li class="ui-state-highlight">B 3</li>
+  <li class="ui-state-highlight">B 4</li>
+  <li class="ui-state-highlight">B 5</li>
+  <li class="ui-state-highlight">B 6</li>
+</ul>
+ 
+ 
+</body>
+</html>
