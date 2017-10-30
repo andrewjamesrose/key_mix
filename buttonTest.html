@@ -12,7 +12,25 @@
 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  
+
+<script>
+var colours = ["#009A90", "#3DB54B", "#B8D432", "#FEF200", "#FFCC00", "#FF9900", 
+                "#EF5D22", "#F80120", "#C20072", "#68397F", "#2E2C75", "#3401CC", 
+                "#009A90", "#3DB54B", "#B8D432", "#FEF200", "#FFCC00", "#FF9900", 
+                "#EF5D22", "#F80120", "#C20072", "#68397F", "#2E2C75", "#3401CC"];
+
+const grey = ["#6B6B6B", "#6B6B6B","#6B6B6B", "#6B6B6B","#6B6B6B", "#6B6B6B",
+            "#6B6B6B", "#6B6B6B","#6B6B6B", "#6B6B6B","#6B6B6B", "#6B6B6B",
+            "#6B6B6B", "#6B6B6B","#6B6B6B", "#6B6B6B","#6B6B6B", "#6B6B6B",
+            "#6B6B6B", "#6B6B6B","#6B6B6B", "#6B6B6B","#6B6B6B", "#6B6B6B"];
+
+var chart = [];
+
+var global_up;
+var global_down;
+var global_rad;
 
 
   $( function() {
@@ -20,7 +38,20 @@
  
         number = generate_number();
         document.getElementById("output_number").innerHTML = number;
-        document.getElementById("major_minor").innerHTML = mix_items(number);        
+        document.getElementById("major_minor").innerHTML = mix_items(number);
+        document.getElementById("colour_div").innerHTML = colours[number-1];
+        document.getElementById("colour_div").style.backgroundColor = colours[number - 1];
+        //chart = grey;
+        // find out why above line doesn't work?
+        for (var i = 0; i <=23; i++){
+            chart[i] = grey[i];
+        }
+        
+        chart[number-1] = colours[number-1];
+        chart[global_up-1] = colours[global_up-1];
+        chart[global_down-1] = colours[global_down-1];
+        chart[global_rad-1] = colours[global_rad-1];
+        document.getElementById("output_vector").innerHTML = chart;
 
     } );
   });
@@ -30,6 +61,7 @@
         number = Math.floor(Math.random() * 24) + 1; 
         return number;
   }
+
 
 
   function mix_items(input_number){
@@ -65,12 +97,17 @@
         output[1] = keys[up-1];
         output[2] = keys[down-1];
         output[3] = keys[rad-1];
+        global_up = up;
+        global_down = down;
+        global_rad = rad;
 
         return output;
   }
 
 
-  </script>
+</script>
+
+
 </head>
 <body>
 <div>
@@ -88,7 +125,19 @@
 
 <div id="major_minor">key to be determined</div>
 
+<br/>
+<br/>
 
+<div id="colour_div">colour goes here</div>
+
+<br/>
+<br/>
+
+<div id="output_vector">output vector</div>
  
+<br/>
+<br/>
+
+
 </body>
 </html>
