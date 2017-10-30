@@ -12,7 +12,7 @@
 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   
 
 <script>
@@ -39,10 +39,15 @@ var global_rad;
         number = generate_number();
         document.getElementById("output_number").innerHTML = number;
         document.getElementById("major_minor").innerHTML = mix_items(number);
-        document.getElementById("colour_div").innerHTML = colours[number-1];
-        document.getElementById("colour_div").style.backgroundColor = colours[number - 1];
+        
+        
+        //deprecated code block to show colours being generated on screen
+        //document.getElementById("colour_div").innerHTML = colours[number-1];
+        //document.getElementById("colour_div").style.backgroundColor = colours[number - 1];
+        
         //chart = grey;
         // find out why above line doesn't work?
+       
         for (var i = 0; i <=23; i++){
             chart[i] = grey[i];
         }
@@ -51,7 +56,19 @@ var global_rad;
         chart[global_up-1] = colours[global_up-1];
         chart[global_down-1] = colours[global_down-1];
         chart[global_rad-1] = colours[global_rad-1];
-        document.getElementById("output_vector").innerHTML = chart;
+
+        var updated_graph = document.getElementById("pie-chart").getContext("2d");
+        
+        for ( j = 0; j<=11; j++){
+            data_outer[j] = chart[j];
+            data_inner[j] = chart[j+12];
+        }
+        myDoughnut = new Chart(updated_graph, config);
+        
+
+        //document.getElementById("outer_ring").innerHTML = data_outer;
+        //document.getElementById("inner_ring").innerHTML = data_inner;
+
 
     } );
   });
@@ -85,12 +102,21 @@ var global_rad;
             rad = input_number - 12;
         }
 
-        if(up == 25){
+        if(up == 13){
             up = 1;
         }
 
+        if(up == 25){
+            up = 13;
+        }
+
+
+        if(down == 12){
+            down = 24;   
+        }
+
         if(down == 0){
-            down = 24   
+            down = 12;   
         }
         
         output[0] = keys[input_number-1];
@@ -104,10 +130,39 @@ var global_rad;
         return output;
   }
 
+  // code for the chart
+        var data_outer = ["#6B6B6B", "#6B6B6B","#6B6B6B", "#6B6B6B","#6B6B6B", "#6B6B6B",
+        "#6B6B6B", "#6B6B6B","#6B6B6B", "#6B6B6B","#6B6B6B", "#6B6B6B"];
 
+        var padding = [1,1,1,1,1,1,1,1,1,1,1,1];
+
+        var data_inner = ["#6B6B6B", "#6B6B6B","#6B6B6B", "#6B6B6B","#6B6B6B", "#6B6B6B",
+        "#6B6B6B", "#6B6B6B","#6B6B6B", "#6B6B6B","#6B6B6B", "#6B6B6B"];
+
+
+
+        var config = {
+            type: 'doughnut',
+            data: {
+            datasets: [{
+                data: padding,
+                backgroundColor: data_outer,
+                }, {
+                data: padding,
+                backgroundColor: data_inner,
+                }, ],
+                labels: [
+                    //labels would go here
+                ]
+            },
+            options: {
+                responsive: false,
+                animation: {
+                duration: 0
+                }
+            }
+            };
 </script>
-
-
 </head>
 <body>
 <div>
@@ -130,14 +185,13 @@ var global_rad;
 
 <div id="colour_div">colour goes here</div>
 
-<br/>
-<br/>
 
-<div id="output_vector">output vector</div>
- 
-<br/>
-<br/>
 
+<canvas id="pie-chart" width="500" height="500"></canvas>
+<script>
+    var ctx = document.getElementById("pie-chart").getContext("2d");
+    var myDoughnut = new Chart(ctx, config);
+</script>
 
 </body>
 </html>

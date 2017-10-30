@@ -1,0 +1,48 @@
+
+<html>
+
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+</head>
+<body>
+    <canvas id="pie-chart" width="500" height="500"></canvas>
+    <script>
+
+            var data_outer = ["#6B6B6B","#6B6B6B","#B8D432","#6B6B6B","#6B6B6B","#6B6B6B",
+                            "#6B6B6B","#6B6B6B","#6B6B6B","#6B6B6B","#6B6B6B","#6B6B6B"];
+
+            var padding = [1,1,1,1,1,1,1,1,1,1,1,1];
+            
+            var data_inner = ["#6B6B6B","#3DB54B","#B8D432","#FEF200","#6B6B6B","#6B6B6B",
+                            "#6B6B6B","#6B6B6B","#6B6B6B","#6B6B6B","#6B6B6B","#6B6B6B"];
+
+            
+
+            var config = {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: padding,
+                            backgroundColor: data_outer,
+                    }, {
+                        data: padding,
+                            backgroundColor: data_inner,
+                    }, ],
+                    labels: [
+                            //labels would go here
+                    ]
+                },
+                options: {
+                  responsive: false,
+                    animation: {
+                    duration: 0
+                    }
+                }
+            };
+            
+            var ctx = document.getElementById("pie-chart").getContext("2d");
+            var myDoughnut = new Chart(ctx, config);
+    </script>
+</body>
+</html>
