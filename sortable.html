@@ -5,31 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>jQuery UI Sortable - Connect lists</title>
   
-  <!--
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-    
-RGB(0, 154,144)     #009A90
-RGB(61, 181,75)     #3DB54B
-RGB(184, 212,50)    #B8D432
-RGB(254, 242,0)     #FEF200
-RGB(255, 204,0)     #FFCC00
-RGB(255, 153,0)     #FF9900
-RGB(239, 93,34)     #EF5D22
-RGB(248, 1,32)      #F80120
-RGB(194, 0,114)     #C20072
-RGB(104, 57,127)    #68397F
-RGB(46, 44,117)     #2E2C75
-RGB(52, 1,204)      #3401CC
 
-
-
-  -->
-
-  <!--
-    ### Colour codes for keymixing display ###
-
-  -->
   
   <style>
   #sortable1, #sortable2 {
@@ -54,8 +30,10 @@ RGB(52, 1,204)      #3401CC
   <script>
   $( function() {
     $( "#sortable1, #sortable2" ).sortable({
-      connectWith: ".connectedSortable"
-    }).disableSelection();
+      connectWith: ".connectedSortable",
+      //disabled: true,   
+      //dropOnEmpty: false
+    }).disableSelection(); //this disables selection of text in element. It is a general method.
   } );
   </script>
 </head>

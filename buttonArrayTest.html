@@ -1,0 +1,43 @@
+<html lang="en">
+    <head>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+        
+        <script>
+        //javascript lives here
+        $( function() {
+            $("#button1").click(function() {
+                document.getElementById("output_text").innerHTML = "Button 1 was pressed";
+            }
+            );
+        });
+
+        </script>
+    
+    </head>
+    
+    <body>
+        <div id="row 1">
+            <button id="button1">Bmaj</button>
+            <button id="button2">F#maj</button>
+            <button id="button3">Dbmaj</button>
+            <button id="button4">Abmaj</button>
+        </div>
+
+        <div id="row 2">
+            <button id="button5">Ebmaj</button>
+            <button id="button6">Bbmaj</button>
+            <button id="button7">Fmaj</button>
+            <button id="button8">Cmaj</button>
+        </div>
+
+        <div id="row 3">
+            <button id="button9">Gmaj</button>
+            <button id="button10">Dmaj</button>
+            <button id="button11">Amaj</button>
+            <button id="button12">Emaj</button>
+        </div>
+        <br>
+        <div id="output_text">Output text goes here</div>
+    </body>
+</html>
